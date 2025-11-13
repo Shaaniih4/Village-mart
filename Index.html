@@ -1,0 +1,19 @@
+<!-- UPI intent and QR -->
+<button id="upi-intent">Pay with UPI</button>
+<div id="upi-qr"></div>
+<script>
+  const orderId = 'ORD123';
+  const amount = 249.00;
+  const vpa = 'villagemart@bank';
+  const txnId = `vm-${Date.now()}`;
+  const note = `Village Mart ${orderId}`;
+  const upiUrl = `upi://pay?pa=${encodeURIComponent(vpa)}&pn=Village%20Mart&am=${amount}&tn=${encodeURIComponent(note)}&tr=${txnId}&cu=INR`;
+
+  document.getElementById('upi-intent').onclick = () => {
+    window.location.href = upiUrl; // opens UPI app on mobile
+  };
+
+  // Render QR for desktop scanning via gateway or self-generated UPI URL
+  // Example using a QR lib:
+  // new QRCode(document.getElementById('upi-qr'), upiUrl);
+</script>
